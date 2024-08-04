@@ -1,3 +1,4 @@
+import { CreateMovieDto } from './dto/create-movie.dto';
 import { Movie } from './entities/mivie.entity';
 import { MoviesService } from './movies.service';
 import {
@@ -20,12 +21,13 @@ export class MoviesController {
   }
 
   @Get(':id')
-  getOne(@Param('id') movieId: string): Movie {
+  getOne(@Param('id') movieId: number): Movie {
+    console.log(typeof movieId);
     return this.MoviesService.getOne(movieId);
   }
 
   @Post()
-  cerate(@Body() movieData) {
+  cerate(@Body() movieData: CreateMovieDto) {
     return this.MoviesService.create(movieData);
   }
 
